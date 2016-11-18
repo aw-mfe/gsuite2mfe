@@ -10,14 +10,14 @@ This is intended to be called as a cron or Task Manager task. If it can find a b
 
 One method of installation using virtualenv is:
 
-user@lnxbx:~$ virtualenv -p /usr/bin/python3.5 gsuite2mfe
-user@lnxbx:~$ cd gsuite2mfe
-user@lnxbx:~$ git clone https://github.com/andywalden/gsuite2mfe
-user@lnxbx:~$ pip install -r requirements.txt
-user@lnxbx:~$ crontab -e
+    user@lnxbx:~$ virtualenv -p /usr/bin/python3.5 gsuite2mfe
+    user@lnxbx:~$ cd gsuite2mfe
+    user@lnxbx:~$ git clone https://github.com/andywalden/gsuite2mfe
+    user@lnxbx:~$ pip install -r requirements.txt
+    user@lnxbx:~$ crontab -e
 
 At the bottom of the file, insert this line:
-* * * * * /home/user/gsuite2mfe/gsuite2mfe.sh
+    * * * * * /home/user/gsuite2mfe/gsuite2mfe.sh
 
 
 The script requires a config.ini file for the Receiver IP and port. An alternate config filename can be specified from the command line.
