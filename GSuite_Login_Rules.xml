@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nitro_policy esm="124B:FBB8" time="11/18/2016 17:05:49" user="" build="9.6.0 20160506210939" model="ENMELM-VM4" version="9006000">
+  <rules count="1">
+    <rule>
+      <id>5000003</id>
+      <normid>408944640</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Login Failed</message>
+      <description>{"etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/Qh6Qy4Vz7UBv4Bvme-BkRffeAEo\"", "kind": "admin#reports#activity", "events": [{"parameters": [{"value": "google_password", "name": "login_type"}, {"value": "login_failure_invalid_password", "name": "login_failure_type"}], "name": "login_failure", "type": "login"}], "actor": {"profileId": "112832607337051500374", "email": "larsadler@netimagination.com"}, "id": {"uniqueQualifier": "5067047421963720536", "time": "2016-11-16T15:23:35.000Z", "applicationName": "login", "customerId": "C030za3b5"}, "ipAddress": "207.179.200.59"}</description>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Login Failed";adsid:777;content:"login_failure";json;var@{action}:${events.0.name};var@{AppID}:${id.applicationName};var@{External_EventID}:${id.uniqueQualifier};var@{firsttime}:${id.time};var@{Logon_Type}:${events.0.parameters.0.value};var@{Method}:${kind};var@{Reason}:${events.0.parameters.1.value};var@{src_ip}:${ipAddress};var@{Source_Context}:${actor.profileId};var@{UserIDSrc}:${actor.email};fmt@{firsttime, lasttime}:"%Y-%m-%dT:%H:%M:%S.%.3f";map@action:"login_failure"="9";)]]></text>
+    </rule>
+  </rules>
+</nitro_policy>
