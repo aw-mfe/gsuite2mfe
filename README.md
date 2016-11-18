@@ -17,6 +17,7 @@ One method of installation using virtualenv is:
     user@lnxbx:~$ crontab -e
 
 At the bottom of the file, insert this line:
+
     * * * * * /home/user/gsuite2mfe/gsuite2mfe.sh
 
 
