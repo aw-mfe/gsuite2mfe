@@ -71,6 +71,23 @@ At the bottom of the file, insert this line (replace the path with actual path):
 
     * * * * * /home/user/gsuite2mfe/gsuite2mfe.sh
 
+## Installing the ruleset
+
+There are custom parsing rules to parse the events in 'rules.xml'. I haven't had a chance to see all of the events so there might be some updates here. I also had to make some choices in regards to the fields that were parsed in some of the events but everything can be easily customized using the Rules Editor.
+
+To import the rules:
+
+1. Create a GSuite datasource with:
+    - Data Source type set to: Generic Syslog
+    - IP address of the device this script is running on
+    - Time zone set to: GMT
+2. Select the data source in the Device tree on the left and click the Edit Policy icon above the Device Tree.
+3. The Policy Manager will, open, select Advanced Syslog Parser on the left.
+4. On the top menu, click File and Import.
+5. Choose the rules.xml file included with the script and click Import.
+6. Enable the rules under the GSuite datasource, Save and Rollout the policy.
+
+## Extras
 The script also supports some options:
 
 usage: gsuite2mfe.py [-h] [-s] [-e] [-t] [-v] [-l] [-c]
