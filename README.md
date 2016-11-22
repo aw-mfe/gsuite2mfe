@@ -35,14 +35,15 @@ Before the script can be used, install the API credentials. [Google has a great 
 
 
 1. Go to the [Wizard to enable the API](https://console.developers.google.com/flows/enableapi?apiid=admin).
-2. Create a new project called gsuite2mfe.
+2. Create a new project called 'gsuite2mfe'.
 3. Click Create Credentials then OAuth client ID.
 4. Click the Configure consent screen button
-5. Enter gsuite2mfe as the Product name shown to users. Click Save.
-6. Select Other as the Application type and enter "Reports API Quickstart" as the Name. Click Create.
+5. Enter 'gsuite2mfe' as the Product name shown to users. Click Save.
+6. Select Other as the Application type and enter 'gsuite2mfe' as the Name. Click Create.
 7. You will be shown the client ID and client secret. Click OK.
 8. The credentials will be listed under OAuth 2.0 client IDs. Click the Download button at the far right to download the json file. Save it as client_secret.json and put it into the script directory.
-9. Run python quickstart.py and follow the process to enable authentication.
+9. Run the command: python quickstart.py --noauth_local_webserver
+10, Paste the link into your browser and 
 
 
 ## Setting Up Interval Polling
