@@ -189,6 +189,11 @@ def get_credentials():
     store = Storage(credential_path)
     credentials = store.get()
     if not credentials or credentials.invalid:
+        if not os.path.isfile(CLIENT_SECRET_FILE):
+            logging.error("'client_secret.json file is missing. \
+                             Google OAuth must be configured.")
+            sys.exit(1)
+
         flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
         flow.user_agent = APPLICATION_NAME
     return credentials
@@ -206,7 +211,7 @@ def validate_time(return_type, timestamp):
         else:
             return timestamp
     except (ValueError, TypeError):
-        logging.error("Missing or invalid time format: %s", timestamp)
+        logging.debug("Missing or invalid time format: %s", timestamp)
         return None
 
         
@@ -241,8 +246,14 @@ class Bookmark(object):
         If file cannot be read, current time is returned.
         """
         logging.debug("Looking for bookmark file.")
-        if os.path.getsize(self.bmfile) < 10:
-            logging.error("Bookmark file appears corrupt: %s", self.bmfile)
+        try:
+            if os.path.getsize(self.bmfile) < 10:
+                logging.error("Bookmark file appears corrupt: %s", self.bmfile)
+                self.s_time = str(generate(datetime.now(pytz.utc)))
+                return self.s_time
+
+        except FileNotFoundError:
+            logging.debug("Bookmark file not found: %s.", self.bmfile)
             self.s_time = str(generate(datetime.now(pytz.utc)))
             return self.s_time
 
@@ -261,7 +272,7 @@ class Bookmark(object):
                     self.s_time = str(generate(datetime.now(pytz.utc)))
                     return self.s_time
         except OSError:
-            logging.debug("Bookmark file not found: %s.", self.bmfile)
+            logging.debug("Bookmark file cannot be accessed: %s.", self.bmfile)
             self.s_time = str(generate(datetime.now(pytz.utc)))
             return self.s_time
 
