@@ -71,11 +71,11 @@ class Args(object):
         self.args = args
 
         self.parser.add_argument("-s", "--start",
-                                 default=None, dest="starttime", metavar='',
+                                 default=None, dest="s_time", metavar='',
                                  help="Set start time to retrieve events. Format: 2016-11-19T14:53:38.000Z")
 
         self.parser.add_argument("-e", "--end",
-                                 default=None, dest="endtime", metavar='',
+                                 default=None, dest="e_time", metavar='',
                                  help="Set end time to retrieve events. Format: 2016-11-19T14:53:38.000Z")
 
         self.parser.add_argument("-t", "--test",
@@ -97,10 +97,6 @@ class Args(object):
         self.parser.add_argument("-c", "--config",
                                  default=None, dest="cfgfile", metavar='',
                                  help="Path to config file. Default: config.ini")
-
-        self.parser.add_argument("-b", "--bookmark",
-                                 default=None, dest="bookmarkfile", metavar='',
-                                 help="Path to bookmark file. Default: .bookmark")
 
         self.pargs = self.parser.parse_args()
 
@@ -135,7 +131,8 @@ def logging_init():
     logging.getLogger('googleapiclient').setLevel(logging.CRITICAL)
 
 def get_filename():
-    filename = (inspect.getfile(inspect.currentframe()).split("\\", -1)[-1]).rsplit(".", 1)[0]
+    filename = (inspect.getfile(inspect.currentframe())
+                .split("\\", -1)[-1]).rsplit(".", 1)[0]
     return filename
 
 
@@ -213,13 +210,6 @@ def validate_time(return_type, timestamp):
         return None
 
         
-def add_time(seconds, timestamp):
-    """
-    Returns an RFC 3339 formatted string with the given number of seconds added.
-    """
-    return parse(timestamp) + timedelta(seconds)
-
-
 def query_gsuite(app, s_time, e_time):
     """ 
     Returns GSuite events based on given app.
@@ -236,29 +226,84 @@ def query_gsuite(app, s_time, e_time):
                                         endTime=e_time).execute()
     return results.get('items', [])
 
-
-def get_latest_time(s_time, **events):
-    """ 
-    Returns latest timestamp as RFC3339 timestamp.
-    
-    Parameters: s_time: RFC3339 timestamp string
-                events: list of event dicts from Gsuite
+class Bookmark(object):
     """
-    for event in events:
-        evt_time_obj = validate_time('o', event['id']['time'])
-        if evt_time_obj:
-            if evt_time_obj > validate_time('o', s_time):
-                logging.debug("Event time > Bookmark time: %s", event['id']['time'])
-                return validate_time('s', event['id']['time'])
-            else:
-                logging.debug("Bookmark time > Event time. \
-                               Have latest event time: %s", event['id']['time'])
-                return s_time
-        else: 
-            logging.error("Invalid event time. \
-                           This should not happen: %s", event['id']['time'])
-            return s_time
     
+    """
+    def __init__(self, activity):
+        logging.debug("Init bookmark object: %s.", activity)
+        self.activity = activity
+        self.bmfile = "." + activity + '.bookmark'
+    
+    def read(self):
+        """ 
+        Returns RFC 3339 timestamp string. Tries to read given file.
+        If file cannot be read, current time is returned.
+        """
+        logging.debug("Looking for bookmark file.")
+        if os.path.getsize(self.bmfile) < 10:
+            logging.error("Bookmark file appears corrupt: %s", self.bmfile)
+            self.s_time = str(generate(datetime.now(pytz.utc)))
+            return self.s_time
+
+        try:
+            with open(self.bmfile, 'r') as self.open_bmfile:
+                logging.debug("Opening: %s", self.bmfile)
+                self.bookmark = self.open_bmfile.read()
+                logging.debug("File found. Reading timestamp: %s", 
+                                self.bookmark)
+                if validate_time('s', self.bookmark):
+                    logging.debug("Bookmark time is valid.")
+                    self.s_time = self.bookmark
+                    return self.s_time
+                else:
+                    logging.error("Invalid bookmark data. Using current time.")
+                    self.s_time = str(generate(datetime.now(pytz.utc)))
+                    return self.s_time
+        except OSError:
+            logging.debug("Bookmark file not found: %s.", self.bmfile)
+            self.s_time = str(generate(datetime.now(pytz.utc)))
+            return self.s_time
+
+    def update(self, events):
+        """ 
+        Returns latest timestamp as RFC3339 timestamp.
+        
+        Parameters: s_time: RFC3339 timestamp string
+                    events: list of event dicts from Gsuite
+        """
+        self.events = events
+        for self.event in self.events:
+            self.evt_time_obj = validate_time('o', self.event['id']['time'])
+            if self.evt_time_obj:
+                if self.evt_time_obj > validate_time('o', self.bookmark):
+                    self.new_bookmark = self.evt_time_obj
+                    logging.debug("Event time > Bookmark time: %s", self.event['id']['time'])
+                else:
+                    logging.debug("Bookmark time > Event time. \
+                                   Have latest event time: %s", self.event['id']['time'])
+            else: 
+                logging.error("Invalid event time. \
+                               This should not happen: %s", self.event['id']['time'])
+
+    def write(self):
+        """ 
+        Writes time to bookmark file. Adds one second to event.
+        """
+
+        try:
+            self.new_bookmark_p1 = self.new_bookmark + timedelta(0,1)
+            self.new_bookmark_str = generate(self.new_bookmark_p1)
+            try:
+                with open(self.bmfile, 'w') as self.open_bmfile:
+                    self.open_bmfile.write(self.new_bookmark_str)
+                    self.open_bmfile.flush()
+                    logging.debug("Updated bookmark file: %s", self.new_bookmark_str)
+            except OSError:
+                    logging.error("Bookmark file could not be written.")
+        except AttributeError:
+            logging.debug("No new timestamps. Bookmark remains unchanged.")
+
 def send_to_syslog(events, syslog):
     """ 
     Sends iterable event object to syslog socket.
@@ -267,44 +312,6 @@ def send_to_syslog(events, syslog):
         syslog.send(json.dumps(event))
         logging.debug("Event %s sent to syslog: %s.", cnt, json.dumps(event))
     logging.debug("Total Events: %s ", cnt)
-
-    
-def update_bookmark(s_time, bmfile):
-    """ 
-    Writes time to bmfile.
-    """
-    try:
-        with open(bookmarkfile, 'w') as open_bmfile:
-            # Add one second to the bookmark time to move past last event seen
-            open_bmfile.write(s_time)
-            open_bmfile.flush()
-            logging.debug("Updated bookmark file: %s", s_time)
-    except OSError:
-            logging.error("Bookmark file could not be written.")
-
-            
-def read_bookmark(bookmarkfile):
-    """ 
-    Returns RFC 3339 timestamp string if found in provided file
-    """
-    logging.debug("Looking for bookmark file.")
-    try:
-        with open(bookmarkfile, 'r') as open_bmfile:
-            bookmark = open_bmfile.read()
-            logging.debug("File found. Reading timestamp: %s", bookmark)
-            if validate_time('s', bookmark):
-                s_time = bookmark
-                logging.debug("Bookmark time is valid.")
-            else:
-                logging.debug("Bookfile file found data not as expected. \
-                               Creating new bookmark starting now.")
-                s_time = str(generate(datetime.now(pytz.utc)))
-        return s_time
-    except OSError:
-        s_time = str(generate(datetime.now(pytz.utc)))
-        logging.debug("No bookmark file found. Events created \
-                       after %s will be forwarded.", s_time)
-        return s_time
 
 
 def main():
@@ -342,43 +349,43 @@ def main():
         testmode = True
         # Enabling login events for barebones testmode
         activities = ['login']
-        
-    using_bookmark = False
-    time_stor = {}    
-    time_stor['startTime'] = pargs.starttime if validate_time('s', pargs.starttime) else None
-    time_stor['endTime'] = pargs.endtime if validate_time('s', pargs.endtime) else None
-    s_time = time_stor['startTime']
-    e_time = time_stor['endTime']
-    bookmarkfile = pargs.bookmarkfile if pargs.bookmarkfile else '.bookmark'
-    
-    if not s_time:
-        s_time = read_bookmark(bookmarkfile)
-        bookmark = s_time
-        using_bookmark = True
-    if not e_time:
-        e_time = str(generate(datetime.now(pytz.utc)))
-        logging.debug("Querying with end_time set to now: %s", e_time)
+
+    using_bookmark = True
+    s_time = pargs.s_time if validate_time('s', pargs.s_time) else None
+    e_time = pargs.e_time if validate_time('s', pargs.e_time) else None
+    if s_time or e_time:
+        using_bookmark = False
         
     if not testmode:
         syslog = Syslog(syslog_host, syslog_port)
-
+        
     for activity in activities:
+        if using_bookmark:
+            bookmark = Bookmark(activity)
+            s_time = bookmark.read()
+            
+        if not e_time:
+            e_time = str(generate(datetime.now(pytz.utc)))
+            logging.debug("End_time set to now: %s", e_time)
+    
         events = query_gsuite(activity, s_time, e_time)
+
         if len(events) > 0:
-            bookmark = get_latest_time(events)
+            if using_bookmark:
+                logging.debug("Validating event times.")
+                bookmark.update(events)
             if not testmode:
                 send_to_syslog(events, syslog)
             else:
                 logging.debug(" Total events retrieved from %s: %s", 
                                 activity, len(events))
         else:
-            logging.debug("No events found for %s.", activity)
-
-    if using_bookmark and bookmark is not s_time:
-        new_bookmark = add_time(1, s_time)
-        update_bookmark(new_bookmark, bookmarkfile)
-    else:
-        logging.debug("No new events. Bookmark unchanged.")    
+            logging.debug("No events found for activity: %s.", activity)
+        
+        if using_bookmark:
+            bookmark.write()
+        else:
+            logging.debug("Bookmark unchanged.")    
 
 if __name__ == "__main__":
     try:
