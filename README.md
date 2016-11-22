@@ -54,7 +54,9 @@ Before the script can be used, install the API credentials. [Google has a Python
 7. You will be shown the client ID and client secret. Click OK.
 8. The credentials will be listed under OAuth 2.0 client IDs. Click the Download button at the far right to download the json file. Save it as client_secret.json and put it into the script directory.
 9. Run the command: python quickstart.py --noauth_local_webserver
-10, Paste the link into your browser and 
+10. Paste the link into your browser, click Allow and copy the supplied code.
+11. Paste the code back into the terminal with the script.
+12. The script will return the last 10 logins to show that it is working.
 
 
 ## Setting Up Interval Polling
@@ -62,6 +64,12 @@ Before the script can be used, install the API credentials. [Google has a Python
 Since the script is running in a virtual environment, it's helpful to have a shell script to set things up. 
 
 gsuite2mfe.sh needs to be edited to include the correct path to the script.
+
+    #!/bin/bash
+    cd /home/user/gsuite2mfe  <--
+    source bin/activate
+    python gsuite2mfe.py
+
 
 Then set the script to run at an interval. To have cron query every minute, do the following:
 
