@@ -42,7 +42,7 @@ Remove an activity from the list to disable event collection for that activity.
 
 Before the script can be used, install the API credentials. [Google has a Python quick start process to get things set up](https://developers.google.com/admin-sdk/reports/v1/quickstart/python). The steps below are a bit more manual but are tested and known working.
 
-1. Go to the [Google App Manager](https://console.developers.google.com/iam-admin/projects).
+1. Go to the [Google API Manager](https://console.developers.google.com/iam-admin/projects).
 2. Create a new project called 'gsuite2mfe'. It might take a few minutes but then will refresh to the API Library.
 3. Enter 'Admin SDK' into the search box and select the link.
 4. Click the Enable button at the top of the screen.
