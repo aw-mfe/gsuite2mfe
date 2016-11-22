@@ -18,6 +18,15 @@ One method of installation using virtualenv is:
     user@lnxbx:~$ source bin/activate
     user@lnxbx:~$ pip install -r requirements.txt
 
+Copy/Paste Friendly:
+
+    git clone https://github.com/andywalden/gsuite2mfe
+    virtualenv -p /usr/bin/python3.5 gsuite2mfe
+    cd gsuite2mfe
+    source bin/activate
+    pip install -r requirements.txt
+
+
 ## Local Configuration
 Edit the config.ini to set the IP address the events will be forwarded and enable/disable retrieval of log types or 'activities'. 
 
@@ -31,13 +40,15 @@ Remove an activity from the list to disable event collection for that activity.
 
 ## Enable GSuite Authentication
 
-Before the script can be used, install the API credentials. [Google has a great Python quick start process to get things set up](https://developers.google.com/admin-sdk/reports/v1/quickstart/python). It is summarized below.
+Before the script can be used, install the API credentials. [Google has a Python quick start process to get things set up](https://developers.google.com/admin-sdk/reports/v1/quickstart/python). The steps below are a bit more manual but are tested and known working.
 
-
-1. Go to the [Wizard to enable the API](https://console.developers.google.com/flows/enableapi?apiid=admin).
-2. Create a new project called 'gsuite2mfe'.
-3. Click Create Credentials then OAuth client ID.
-4. Click the Configure consent screen button
+1. Go to the [Google App Manager](https://console.developers.google.com/iam-admin/projects).
+2. Create a new project called 'gsuite2mfe'. It might take a few minutes but then will refresh to the API Library.
+3. Enter 'Admin SDK' into the search box and select the link.
+4. Click the Enable button at the top of the screen.
+5. Click Credentials on the left menu bar.
+6. Click Create Credentials then OAuth client ID.
+4. Click the Configure consent screen button.
 5. Enter 'gsuite2mfe' as the Product name shown to users. Click Save.
 6. Select Other as the Application type and enter 'gsuite2mfe' as the Name. Click Create.
 7. You will be shown the client ID and client secret. Click OK.
