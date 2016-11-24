@@ -1,0 +1,2381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nitro_policy esm="124B:FBB8" time="11/24/2016 02:14:31" user="" build="9.6.0 20160506210939" model="ENMELM-VM4" version="9006000">
+  <rules count="132">
+    <rule>
+      <id>5000130</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Unsuspended</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Unsuspended";adsid:777;content:"UNSUSPEND_USER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000129</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Undeleted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Undeleted";adsid:777;content:"UNDELETE_USER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000127</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Suspended</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Suspended";adsid:777;content:"SUSPEND_USER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000120</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Renamed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Renamed";adsid:777;content:"RENAME_USER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000118</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Moved to Org Unit</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Moved to Org Unit";adsid:777;content:"MOVE_USER_TO_ORG_UNIT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000131</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Invited</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Invited";adsid:777;content:"USER_INVITE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000121</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Invite Resent</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Invite Resent";adsid:777;content:"RESEND_USER_INVITE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000111</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Deleted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Deleted";adsid:777;content:"DELETE_USER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000110</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: User Created</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Created";adsid:777;content:"CREATE_USER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000132</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Temp Password Viewed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Temp Password Viewed";adsid:777;content:"VIEW_TEMP_PASSWORD";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000126</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Security Key Revoked</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Security Key Revoked";adsid:777;content:"REVOKE_SECURITY_KEY";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000122</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Reset Sign-in Cookies</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Reset Sign-in Cookies";adsid:777;content:"RESET_SIGNIN_COOKIES";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000108</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Password Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Password Changed";adsid:777;content:"CHANGE_PASSWORD";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000109</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Password Change on Next Login</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Password Change on Next Login";adsid:777;content:"CHANGE_PASSWORD_ON_NEXT_LOGIN";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000119</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Nickname Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Nickname Removed";adsid:777;content:"REMOVE_NICKNAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000102</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Nickname Added</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Nickname Added";adsid:777;content:"ADD_NICKNAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000117</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Mail Destination Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Mail Destination Removed";adsid:777;content:"MAIL_ROUTING_DESTINATION_REMOVED";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000116</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Mail Destination Added</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Mail Destination Added";adsid:777;content:"MAIL_ROUTING_DESTINATION_ADDED";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000107</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Last Name Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Last Name Changed";adsid:777;content:"CHANGE_LAST_NAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000105</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Invited Canceled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Invited Canceled";adsid:777;content:"CANCEL_USER_INVITE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000113</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Gmail User Reset</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Gmail User Reset";adsid:777;content:"GMAIL_RESET_USER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000106</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: First Name Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: First Name Changed";adsid:777;content:"CHANGE_FIRST_NAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000007</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Change First Name</message>
+      <description>{"kind": "admin#reports#activity", "ipAddress": "70.106.204.91", "id": {"time": "2016-11-22T05:07:54.125Z", "customerId": "C030za3b5", "applicationName": "admin", "uniqueQualifier": "-8531949475981500012"}, "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/WXfgkYqeqgbkw_GXoqydYQUPPhA\"", "events": [{"type": "USER_SETTINGS", "name": "CHANGE_FIRST_NAME", "parameters": [{"name": "USER_EMAIL", "value": "user@testdomain.com"}, {"name": "OLD_VALUE", "value": "Lars (Test)"}, {"name": "NEW_VALUE", "value": "Lars"}]}], "actor": {"callerType": "USER", "email": "user@testdomain.com", "profileId": "112832607337051500374"}}.</description>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Change First Name";adsid:777;content:"CHANGE_FIRST_NAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000112</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: CSV Userlist Downloaded</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: CSV Userlist Downloaded";adsid:777;content:"DOWNLOAD_USERLIST_CSV";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000104</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Bulk Upload Notifcation Sent</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Bulk Upload Notifcation Sent";adsid:777;content:"BULK_UPLOAD_NOTIFICATION_SENT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000103</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Bulk Upload</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Bulk Upload";adsid:777;content:"BULK_UPLOAD";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000128</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Auto Contact Sharing Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Auto Contact Sharing Toggled";adsid:777;content:"TOGGLE_AUTOMATIC_CONTACT_SHARING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000123</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Admin Privilege Revoked</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Admin Privilege Revoked";adsid:777;content:"REVOKE_ADMIN_PRIVILEGE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000114</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Admin Privilege Granted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Admin Privilege Granted";adsid:777;content:"GRANT_ADMIN_PRIVILEGE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000115</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: Admin Privilege Delegrated</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Admin Privilege Delegrated";adsid:777;content:"GRANT_DELEGATED_ADMIN_PRIVILEGES";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000124</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: ASP Revoked</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: ASP Revoked";adsid:777;content:"REVOKE_ASP";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000125</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Users: 3LO Token Revoked</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: 3LO Token Revoked";adsid:777;content:"REVOKE_3LO_TOKEN";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000004</id>
+      <normid>408944640</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Token Authorized</message>
+      <description>{"actor": {"email": "user@testdomain.com", "profileId": "112832607337051500374"}, "id": {"customerId": "C030za3b5", "uniqueQualifier": "7854517754397537495", "applicationName": "token", "time": "2016-11-15T18:08:58.627Z"}, "kind": "admin#reports#activity", "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/gjZs_jazGgHBXPT26bBlqIEhiVY\"", "events": [{"parameters": [{"value": "292824132082.apps.googleusercontent.com", "name": "client_id"}, {"value": "Google APIs Explorer", "name": "app_name"}, {"name": "scope", "multiValue": ["https://www.googleapis.com/auth/admin.reports.audit.readonly", "https://www.googleapis.com/auth/admin.reports.usage.readonly"]}], "name": "authorize"}]}</description>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Token Authorized";adsid:777;content:"token";content:"authorize";json;var@{action}:${events.0.name};var@{AppID}:${id.applicationName};var@{External_EventID}:${id.uniqueQualifier};var@{firsttime,lasttime}:${id.time};var@{Logon_Type}:${events.0.parameters.1.value};var@{Method}:${kind};var@{Source_Context}:${actor.profileId};var@{Target_Context}:${events.0.parameters.2.multiValue.0};var@{UserIDSrc}:${actor.email};map@action:"authorize"="8";)]]></text>
+    </rule>
+    <rule>
+      <id>5000101</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite System: Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite System: Setting Changed";adsid:777;content:"CHANGE_SYSTEM_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000133</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Sites: Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Sites: Setting Changed";adsid:777;content:"SITES_SETTINGS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000099</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Security Allow ASP without 2SV Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Security Allow ASP without 2SV Changed";adsid:777;content:"ALLOW_ASP_WITHOUT_2SV";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000097</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Org: Unit Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Org: Unit Removed";adsid:777;content:"REMOVE_ORG_UNIT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000096</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Org: Unit Moved</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Org: Unit Moved";adsid:777;content:"MOVE_ORG_UNIT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000094</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Org: Unit Created</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Org: Unit Created";adsid:777;content:"CREATE_ORG_UNIT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000098</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Org: Service Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Org: Service Toggled";adsid:777;content:"TOGGLE_SERVICE_ENABLED";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000095</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Org: Org Unit Descripted Edited</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Org: Org Unit Descripted Edited";adsid:777;content:"EDIT_ORG_UNIT_DESCRIPTION";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000091</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Mobile: Wipe Device then Block</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Wipe Device then Block";adsid:777;content:"MOBILE_DEVICE_CANCEL_WIPE_THEN_BLOCK";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000090</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Mobile: Wipe Device then Approve</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Wipe Device then Approve";adsid:777;content:"MOBILE_DEVICE_CANCEL_WIPE_THEN_APPROVE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000087</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Mobile: Mobile Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Mobile Setting Changed";adsid:777;content:"CHANGE_MOBILE_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000089</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Mobile: Mobile Device Blocked</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Mobile Device Blocked";adsid:777;content:"MOBILE_DEVICE_BLOCK";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000088</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Mobile: Mobile Device Approved</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Mobile Device Approved";adsid:777;content:"MOBILE_DEVICE_APPROVE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000093</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Mobile: Device Wiped</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Device Wiped";adsid:777;content:"MOBILE_DEVICE_WIPE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000092</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Mobile: Device Deleted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Device Deleted";adsid:777;content:"MOBILE_DEVICE_DELETE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000002</id>
+      <normid>408944640</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Logout</message>
+      <description>{"id": {"time": "2016-11-17T16:21:33.000Z", "uniqueQualifier": "-7169799351817900262", "customerId": "C030za3b5", "applicationName": "login"}, "events": [{"name": "logout", "type": "login", "parameters": [{"value": "google_password", "name": "login_type"}]}], "actor": {"profileId": "112832607337051500374", "email": "user@testdomain.com"}, "ipAddress": "70.106.204.91", "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/fdtp7SDUEV0q4m7wNQK2mmbReCE\"", "kind": "admin#reports#activity"}</description>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Logout";adsid:777;content:"logout";json;var@{action}:${events.0.name};var@{AppID}:${id.applicationName};var@{External_EventID}:${id.uniqueQualifier};var@{firsttime,lasttime}:${id.time};var@{Logon_Type}:${events.0.parameters.0.value};var@{Method}:${kind};var@{src_ip}:${ipAddress};var@{Source_Context}:${actor.profileId};var@{UserIDSrc}:${actor.email};map@action:"logout"="8";)]]></text>
+    </rule>
+    <rule>
+      <id>5000001</id>
+      <normid>408944640</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Login Successful</message>
+      <description>{"ipAddress": "70.106.204.91", "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/0letFYl_7YuOrXLsxf7jBAyaT30\"", "events": [{"name": "login_success", "parameters": [{"value": "google_password", "name": "login_type"}], "type": "login"}], "kind": "admin#reports#activity", "actor": {"email": "user@testdomain.com", "profileId": "112832607337051500374"}, "id": {"time": "2016-11-16T17:53:30.000Z", "uniqueQualifier": "-1956143570401743299", "customerId": "C030za3b5", "applicationName": "login"}}</description>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Login Successful";adsid:777;content:"login_success";json;var@{action}:${events.0.name};var@{AppID}:${id.applicationName};var@{External_EventID}:${id.uniqueQualifier};var@{firsttime,lasttime}:${id.time};var@{Logon_Type}:${events.0.parameters.0.value};var@{Method}:${kind};var@{src_ip}:${ipAddress};var@{Source_Context}:${actor.profileId};var@{UserIDSrc}:${actor.email};map@action:"login_success"="8";)]]></text>
+    </rule>
+    <rule>
+      <id>5000003</id>
+      <normid>408944640</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Login Failed</message>
+      <description>{"etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/Qh6Qy4Vz7UBv4Bvme-BkRffeAEo\"", "kind": "admin#reports#activity", "events": [{"parameters": [{"value": "google_password", "name": "login_type"}, {"value": "login_failure_invalid_password", "name": "login_failure_type"}], "name": "login_failure", "type": "login"}], "actor": {"profileId": "112832607337051500374", "email": "user@testdomain.com"}, "id": {"uniqueQualifier": "5067047421963720536", "time": "2016-11-16T15:23:35.000Z", "applicationName": "login", "customerId": "C030za3b5"}, "ipAddress": "207.179.200.59"}</description>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Login Failed";adsid:777;content:"login_failure";json;var@{action}:${events.0.name};var@{AppID}:${id.applicationName};var@{External_EventID}:${id.uniqueQualifier};var@{firsttime,lasttime}:${id.time};var@{Logon_Type}:${events.0.parameters.0.value};var@{Method}:${kind};var@{Reason}:${events.0.parameters.1.value};var@{src_ip}:${ipAddress};var@{Source_Context}:${actor.profileId};var@{UserIDSrc}:${actor.email};map@action:"login_failure"="9";)]]></text>
+    </rule>
+    <rule>
+      <id>5000086</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Licenses: User License Revoke</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Licenses: User License Revoke";adsid:777;content:"USER_LICENSE_REVOKE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000085</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Licenses: User License Reassignment</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Licenses: User License Reassignment";adsid:777;content:"USER_LICENSE_REASSIGNMENT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000084</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Licenses: User License Assignment</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Licenses: User License Assignment";adsid:777;content:"USER_LICENSE_ASSIGNMENT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000083</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Licenses: Org License Assignment</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Licenses: Org License Assignment";adsid:777;content:"ORG_USERS_LICENSE_ASSIGNMENT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000082</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Licenses: License Revoked</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Licenses: License Revoked";adsid:777;content:"ORG_LICENSE_REVOKE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000081</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Licenses: License Assignment All Users</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Licenses: License Assignment All Users";adsid:777;content:"ORG_ALL_USERS_LICENSE_ASSIGNMENT";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000080</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Licenses: Auto Assign Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Licenses: Auto Assign Changed";adsid:777;content:"CHANGE_LICENSE_AUTO_ASSIGN";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000076</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Group Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Group Setting Changed";adsid:777;content:"CHANGE_GROUP_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000075</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Group Name Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Group Name Changed";adsid:777;content:"CHANGE_GROUP_NAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000079</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Group Member Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Group Member Removed";adsid:777;content:"REMOVE_GROUP_MEMBER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000073</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Group Member Added</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Group Member Added";adsid:777;content:"ADD_GROUP_MEMBER";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000074</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Group Description Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Group Description Changed";adsid:777;content:"CHANGE_GROUP_DESCRIPTION";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000078</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Group Deleted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Group Deleted";adsid:777;content:"DELETE_GROUP";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000077</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Group Created</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Group Created";adsid:777;content:"CREATE_GROUP";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000154</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: Basic Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: Basic Setting Changed";adsid:777;content:"change_basic_setting";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000155</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Groups: ACL Permission Changed</message>
+      <description>{"etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/puG2EhNP501SDAUycBc6jQGh5wE\"", "actor": {"callerType": "USER", "profileId": "112832607337051500374", "email": "user@testdomain.com"}, "events": [{"type": "acl_change", "name": "change_acl_permission", "parameters": [{"name": "group_email", "value": "test@testdomain.com"}, {"name": "acl_permission", "value": "can_view_topics"}, {"name": "old_value_repeated", "multiValue": ["organization", "members", "owners", "managers"]}, {"name": "new_value_repeated", "multiValue": ["organization", "owners", "managers"]}]}, {"type": "acl_change", "name": "change_acl_permission", "parameters": [{"name": "group_email", "value": "test@testdomain.com"}, {"name": "acl_permission", "value": "can_join"}, {"name": "old_value_repeated", "multiValue": ["organization", "members", "owners", "managers"]}, {"name": "new_value_repeated", "multiValue": ["organization"]}]}, {"type": "acl_change", "name": "change_acl_permission", "parameters": [{"name": "group_email", "value": "test@net</description>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Groups: ACL Permission Changed";adsid:777;content:"change_acl_permission";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000072</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Email: Settings Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Email: Settings Changed";adsid:777;content:"CHANGE_EMAIL_SETTINGS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000071</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Verify Secondary Domain MX</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Verify Secondary Domain MX";adsid:777;content:"VERIFY_SECONDARY_DOMAIN_MX";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000070</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Verify Secondary Domain</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Verify Secondary Domain";adsid:777;content:"VERIFY_SECONDARY_DOMAIN";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000069</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Verify Domain Alias MX</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Verify Domain Alias MX";adsid:777;content:"VERIFY_DOMAIN_ALIAS_MX";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000068</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Verify Domain Alias</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Verify Domain Alias";adsid:777;content:"VERIFY_DOMAIN_ALIAS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000035</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Support Message Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Support Message Changed";adsid:777;content:"CHANGE_DOMAIN_SUPPORT_MESSAGE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000046</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Service Enabled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Service Enabled";adsid:777;content:"ENABLE_SERVICE_OR_FEATURE_NOTIFICATION";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000066</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Secondary Email Updated</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Secondary Email Updated";adsid:777;content:"UPDATE_SECONDARY_EMAIL";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000027</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Secondary Domain Added</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Secondary Domain Added";adsid:777;content:"ADD_SECONDARY_DOMAIN";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000052</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Seconard Domain Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Seconard Domain Removed";adsid:777;content:"REMOVE_SECONDARY_DOMAIN";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000062</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: SSO Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: SSO Toggled";adsid:777;content:"TOGGLE_SSO_ENABLED";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000043</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: SSO Settings Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: SSO Settings Changed";adsid:777;content:"CHANGE_SSO_SETTINGS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000061</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: SSL Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: SSL Toggled";adsid:777;content:"TOGGLE_SSL";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000042</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Renew Registration</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Renew Registration";adsid:777;content:"CHANGE_RENEW_DOMAIN_REGISTRATION";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000065</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Primary Admin Email Updated</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Primary Admin Email Updated";adsid:777;content:"UPDATE_DOMAIN_PRIMARY_ADMIN_EMAIL";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000057</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Pre-Release Features Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Pre-Release Features Toggled";adsid:777;content:"TOGGLE_ENABLE_PRE_RELEASE_FEATURES";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000047</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Pin Generated</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Pin Generated";adsid:777;content:"GENERATE_PIN";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000041</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Password Min Length Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Password Min Length Changed";adsid:777;content:"CHANGE_PASSWORD_MIN_LENGTH";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000040</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Password Max Length Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Password Max Length Changed";adsid:777;content:"CHANGE_PASSWORD_MAX_LENGTH";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000060</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Outbound Relay Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Outbound Relay Toggled";adsid:777;content:"TOGGLE_OUTBOUND_RELAY";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000039</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Org Name Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Org Name Changed";adsid:777;content:"CHANGE_ORGANIZATION_NAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000059</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Open ID Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Open ID Toggled";adsid:777;content:"TOGGLE_OPEN_ID_ENABLED";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000049</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: OAuth Secret Regenerated</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: OAuth Secret Regenerated";adsid:777;content:"REGENERATE_OAUTH_CONSUMER_SECRET";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000056</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: OAuth Key Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: OAuth Key Toggled";adsid:777;content:"TOGGLE_ENABLE_OAUTH_CONSUMER_KEY";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000067</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: OAuth Certificate Uploaded</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: OAuth Certificate Uploaded";adsid:777;content:"UPLOAD_OAUTH_CERTIFICATE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000058</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: OAuth API Access Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: OAuth API Access Toggled";adsid:777;content:"TOGGLE_OAUTH_ACCESS_TO_ALL_APIS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000064</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Next Gen Control Panel Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Next Gen Control Panel Toggled";adsid:777;content:"TOGGLE_USE_NEXT_GEN_CONTROL_PANEL";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000048</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: MX Verification Claim</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: MX Verification Claim";adsid:777;content:"MX_RECORD_VERIFICATION_CLAIM";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000038</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Login Border Color Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Login Border Color Changed";adsid:777;content:"CHANGE_LOGIN_BORDER_COLOR";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000037</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Login BG Color Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Login BG Color Changed";adsid:777;content:"CHANGE_LOGIN_BACKGROUND_COLOR";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000036</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Login Activity Trace Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Login Activity Trace Changed";adsid:777;content:"CHANGE_LOGIN_ACTIVITY_TRACE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000045</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Feedback Solicitation Enabled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Feedback Solicitation Enabled";adsid:777;content:"ENABLE_FEEDBACK_SOLICITATION";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000034</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Domain Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Domain Changed";adsid:777;content:"CHANGE_DOMAIN_NAME";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000051</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Domain Alias Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Domain Alias Removed";adsid:777;content:"REMOVE_DOMAIN_ALIAS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000033</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Default Timezone Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Default Timezone Changed";adsid:777;content:"CHANGE_DOMAIN_DEFAULT_TIMEZONE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000032</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Default Locale Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Default Locale Changed";adsid:777;content:"CHANGE_DOMAIN_DEFAULT_LOCALE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000063</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Custom Logo Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Custom Logo Toggled";adsid:777;content:"TOGGLE_USE_CUSTOM_LOGO";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000031</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Custom Logo Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Custom Logo Changed";adsid:777;content:"CHANGE_CUSTOM_LOGO";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000055</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Contact Sharing Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Contact Sharing Toggled";adsid:777;content:"TOGGLE_CONTACT_SHARING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000030</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Conflict Account Action Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Conflict Account Action Changed";adsid:777;content:"CHANGE_CONFLICT_ACCOUNT_ACTION";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000054</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Auto-Add Service Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Auto-Add Service Toggled";adsid:777;content:"TOGGLE_AUTO_ADD_NEW_SERVICE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000029</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Auto Renewal Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Auto Renewal Changed";adsid:777;content:"CHANGE_ACCOUNT_AUTO_RENEWAL";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000026</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Alias Added</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Alias Added";adsid:777;content:"ADD_DOMAIN_ALIAS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000053</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: Admin Password Reset Toggled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: Admin Password Reset Toggled";adsid:777;content:"TOGGLE_ALLOW_ADMIN_PASSWORD_RESET";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000050</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: API Access Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: API Access Removed";adsid:777;content:"REMOVE_API_CLIENT_ACCESS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000044</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: API Access Enabled</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: API Access Enabled";adsid:777;content:"ENABLE_API_ACCESS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000028</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Domain: API Access Authorized</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Domain: API Access Authorized";adsid:777;content:"AUTHORIZE_API_CLIENT_ACCESS";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000024</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Docs: Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Docs: Setting Changed";adsid:777;content:"CHANGE_DOCS_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000025</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Docs: Owership Transfered</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Docs: Owership Transfered";adsid:777;content:"TRANSFER_DOCUMENT_OWNERSHIP";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000023</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Delegate Admin Settings: Role Unassigned</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Delegate Admin Settings: Role Unassigned";adsid:777;content:"UNASSIGN_ROLE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000022</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Delegate Admin Settings: Role Renamed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Delegate Admin Settings: Role Renamed";adsid:777;content:"RENAME_ROLE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000020</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Delegate Admin Settings: Role Deleted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Delegate Admin Settings: Role Deleted";adsid:777;content:"DELETE_ROLE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000019</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Delegate Admin Settings: Role Created</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Delegate Admin Settings: Role Created";adsid:777;content:"CREATE_ROLE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000018</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Delegate Admin Settings: Role Assigned</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Delegate Admin Settings: Role Assigned";adsid:777;content:"ASSIGN_ROLE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000021</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Delegate Admin Settings: Privileged Removed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Delegate Admin Settings: Privileged Removed";adsid:777;content:"REMOVE_PRIVILEGE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000017</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Delegate Admin Settings: Privilege Added</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Delegate Admin Settings: Privilege Added";adsid:777;content:"ADD_PRIVILEGE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000016</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Chrome: Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Chrome: Setting Changed";adsid:777;content:"CHANGE_CHROME_OS_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000015</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Chat: Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Chat: Setting Changed";adsid:777;content:"CHANGE_CHAT_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000014</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Calendar: Setting Renamed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Calendar: Setting Renamed";adsid:777;content:"RENAME_CALENDAR_RESOURCE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000013</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Calendar: Setting Deleted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Calendar: Setting Deleted";adsid:777;content:"DELETE_CALENDAR_RESOURCE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000012</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Calendar: Setting Created</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Calendar: Setting Created";adsid:777;content:"CREATE_CALENDAR_RESOURCE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000011</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Calendar: Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Calendar: Setting Changed";adsid:777;content:"CHANGE_CALENDAR_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000010</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Apps: Setting Deleted</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Apps: Setting Deleted";adsid:777;content:"DELETE_APPLICATION_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000009</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Apps: Setting Created</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Apps: Setting Created";adsid:777;content:"CREATE_APPLICATION_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+    <rule>
+      <id>5000008</id>
+      <normid>1345323008</normid>
+      <revision>0</revision>
+      <sid>0</sid>
+      <class>2</class>
+      <message>GSuite Apps: Setting Changed</message>
+      <description/>
+      <origin>1</origin>
+      <severity>25</severity>
+      <type>1</type>
+      <action>5</action>
+      <action_initial>5</action_initial>
+      <action_disallowed>0</action_disallowed>
+      <other_bits_default>4</other_bits_default>
+      <other_bits_disallowed>0</other_bits_disallowed>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Apps: Setting Changed";adsid:777;content:"CHANGE_APPLICATION_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+    </rule>
+  </rules>
+</nitro_policy>
