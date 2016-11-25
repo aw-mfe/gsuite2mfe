@@ -54,7 +54,7 @@ any credentials.
 """
 
 __author__ = "Andy Walden"
-__version__ = ".1"
+__version__ = "Beta1"
 
 class Args(object):
     """
@@ -249,12 +249,12 @@ class Bookmark(object):
         try:
             if os.path.getsize(self.bmfile) < 10:
                 logging.error("Bookmark file appears corrupt: %s", self.bmfile)
-                self.s_time = str(generate(datetime.now(pytz.utc)))
+                self._generate_bm_time()
                 return self.s_time
 
         except FileNotFoundError:
             logging.debug("Bookmark file not found: %s.", self.bmfile)
-            self.s_time = str(generate(datetime.now(pytz.utc)))
+            self._generate_bm_time()
             return self.s_time
 
         try:
@@ -269,13 +269,17 @@ class Bookmark(object):
                     return self.s_time
                 else:
                     logging.error("Invalid bookmark data. Using current time.")
-                    self.s_time = str(generate(datetime.now(pytz.utc)))
+                    self._generate_bm_time()
                     return self.s_time
         except OSError:
             logging.debug("Bookmark file cannot be accessed: %s.", self.bmfile)
-            self.s_time = str(generate(datetime.now(pytz.utc)))
+            self._generate_bm_time()
             return self.s_time
 
+    def _generate_bm_time(self):
+        self.s_time = str(generate(datetime.now(pytz.utc) - timedelta(0,1)))
+        self.new_bookmark = validate_time('o', self.s_time)
+        
     def update(self, events):
         """ 
         Returns latest timestamp as RFC3339 timestamp.
