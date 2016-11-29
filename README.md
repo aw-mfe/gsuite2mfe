@@ -13,7 +13,7 @@ This is intended to be called as a cron or Task Manager task. If it can find a b
 One method of installation using virtualenv is:
 
     user@lnxbx:~$ git clone https://github.com/andywalden/gsuite2mfe
-    user@lnxbx:~$ virtualenv -p /usr/bin/python3.5 gsuite2mfe
+    user@lnxbx:~$ virtualenv -p /usr/bin/python3 gsuite2mfe
     user@lnxbx:~$ cd gsuite2mfe
     user@lnxbx:~$ source bin/activate
     user@lnxbx:~$ pip install -r requirements.txt
