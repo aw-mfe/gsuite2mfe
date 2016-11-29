@@ -107,7 +107,7 @@
       <action_disallowed>0</action_disallowed>
       <other_bits_default>4</other_bits_default>
       <other_bits_disallowed>0</other_bits_disallowed>
-      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Invited";adsid:777;content:"USER_INVITE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Invitation  Sent";adsid:777;content:"USER_INVITE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
     </rule>
     <rule>
       <id>5000121</id>
@@ -125,7 +125,7 @@
       <action_disallowed>0</action_disallowed>
       <other_bits_default>4</other_bits_default>
       <other_bits_disallowed>0</other_bits_disallowed>
-      <text><![CDATA[any any any -> any any (msg:"GSuite Users: User Invite Resent";adsid:777;content:"RESEND_USER_INVITE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Users: Invite Resent";adsid:777;content:"RESEND_USER_INVITE";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
     </rule>
     <rule>
       <id>5000111</id>
@@ -791,7 +791,7 @@
       <action_disallowed>0</action_disallowed>
       <other_bits_default>4</other_bits_default>
       <other_bits_disallowed>0</other_bits_disallowed>
-      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Mobile Setting Changed";adsid:777;content:"CHANGE_MOBILE_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Setting Changed";adsid:777;content:"CHANGE_MOBILE_SETTING";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
     </rule>
     <rule>
       <id>5000089</id>
@@ -809,7 +809,7 @@
       <action_disallowed>0</action_disallowed>
       <other_bits_default>4</other_bits_default>
       <other_bits_disallowed>0</other_bits_disallowed>
-      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Mobile Device Blocked";adsid:777;content:"MOBILE_DEVICE_BLOCK";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
+      <text><![CDATA[any any any -> any any (msg:"GSuite Mobile: Device Blocked";adsid:777;content:"MOBILE_DEVICE_BLOCK";json;var@{firsttime,lasttime}:${id.time};var@{Message_Text,Rule_Name}:${events.0.name};var@{src_ip}:${ipAddress};var@{UserIDSrc}:${actor.email};)]]></text>
     </rule>
     <rule>
       <id>5000088</id>
