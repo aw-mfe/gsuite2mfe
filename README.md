@@ -122,4 +122,4 @@ It is likely that -s would want to be combined with -t which will prevent the ev
 
 Otherwise, '-l debug' creates a fairly verbose story about what is going on as the script runs. 
 
-Please send any bug reports or suggestions to gsuite2mfe at krakencodes dot com.
+Please send any bug reports or suggestions to gsuite2mfe at krakencodes dot com. 

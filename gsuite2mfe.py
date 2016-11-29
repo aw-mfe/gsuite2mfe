@@ -80,9 +80,19 @@ class Args(object):
 
         self.parser.add_argument("-t", "--test",
                                  action='store_true',
+                                 default=False,
                                  dest="testmode",
                                  help="Disable syslog forwarding. Combine with -l debug for console output.")
-        self.parser.set_defaults(testmode = False)
+
+        self.parser.add_argument("-w", "--write",
+                                 action='store_true',
+                                 default=False,
+                                 dest="write_eventfile",
+                                 help="Write events to log: gsuite2mfe_events.log. Use -f to change path/filename.")
+                
+        self.parser.add_argument("-f", "--file",
+                                 default=None, dest="event_filename", metavar='',
+                                 help="Specify alternate path/filename for -w option.")
 
         self.parser.add_argument("-v", "--version",
                                  action="version",
@@ -233,7 +243,7 @@ def query_gsuite(app, s_time, e_time):
 
 class Bookmark(object):
     """
-    
+    Functions to read, write, track update bookmark files
     """
     def __init__(self, activity):
         logging.debug("Init bookmark object: %s.", activity)
@@ -328,6 +338,23 @@ def send_to_syslog(events, syslog):
         logging.debug("Event %s sent to syslog: %s.", cnt, json.dumps(event))
     logging.debug("Total Events: %s ", cnt)
 
+def write_events_to_file(events, event_filename):
+    """
+    Writes list of events to a file.
+    """
+    try:
+        with open(event_filename, 'a') as open_eventfile:
+            for cnt, event in enumerate(events, start=1):
+                json.dump(event, open_eventfile)
+                open_eventfile.write('\n')
+                logging.debug("Event %s written to file: %s.", cnt, json.dumps(event))
+            open_eventfile.flush()
+            logging.debug("Wrote events to file: %s", event_filename)
+    except OSError:
+        logging.error("Event file file could not be written: %s.", event_filename)
+    except AttributeError:
+        logging.debug("No new events. Event file unchanged.")
+
 
 def main():
     """ Main function """
@@ -336,12 +363,19 @@ def main():
     pargs = args.get_args()
     logging_init()
 
-    if pargs.level:
+    if pargs.level: 
         logging.getLogger().setLevel(getattr(logging, pargs.level.upper()))
     
     testmode = pargs.testmode
     configfile = pargs.cfgfile if pargs.cfgfile else 'config.ini'
 
+    try:
+        event_filename = pargs.event_filename if pargs.event_filename else "gsuite2mfe_events.json"
+    except NameError: 
+        logging.debug("No event file specified.")
+    
+    write_eventfile = True if pargs.write_eventfile else False
+        
     try:
         c = Config(configfile, "DEFAULT")
         try:
@@ -373,7 +407,7 @@ def main():
         
     if not testmode:
         syslog = Syslog(syslog_host, syslog_port)
-        
+    
     for activity in activities:
         if using_bookmark:
             bookmark = Bookmark(activity)
@@ -391,6 +425,8 @@ def main():
                 bookmark.update(events)
             if not testmode:
                 send_to_syslog(events, syslog)
+            if write_eventfile:
+                write_events_to_file(events, event_filename)
             else:
                 logging.debug(" Total events retrieved from %s: %s", 
                                 activity, len(events))
@@ -402,6 +438,8 @@ def main():
         else:
             logging.debug("Bookmark unchanged.")    
 
+
+            
 if __name__ == "__main__":
     try:
         main()
