@@ -289,6 +289,7 @@ class Bookmark(object):
     def _generate_bm_time(self):
         self.s_time = str(generate(datetime.now(pytz.utc) - timedelta(0,1)))
         self.new_bookmark = validate_time('o', self.s_time)
+        logging.debug("Bookmark time generated: %s", self.s_time)
         
     def update(self, events):
         """ 

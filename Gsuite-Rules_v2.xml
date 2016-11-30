@@ -404,7 +404,7 @@
       <sid>0</sid>
       <class>2</class>
       <message>GSuite Users: Change First Name</message>
-      <description>{"kind": "admin#reports#activity", "ipAddress": "70.106.204.91", "id": {"time": "2016-11-22T05:07:54.125Z", "customerId": "C030za3b5", "applicationName": "admin", "uniqueQualifier": "-8531949475981500012"}, "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/WXfgkYqeqgbkw_GXoqydYQUPPhA\"", "events": [{"type": "USER_SETTINGS", "name": "CHANGE_FIRST_NAME", "parameters": [{"name": "USER_EMAIL", "value": "user@testdomain.com"}, {"name": "OLD_VALUE", "value": "Lars (Test)"}, {"name": "NEW_VALUE", "value": "Lars"}]}], "actor": {"callerType": "USER", "email": "user@testdomain.com", "profileId": "112832607337051500374"}}.</description>
+      <description/>
       <origin>1</origin>
       <severity>25</severity>
       <type>1</type>
@@ -584,7 +584,7 @@
       <sid>0</sid>
       <class>2</class>
       <message>GSuite Token Authorized</message>
-      <description>{"actor": {"email": "user@testdomain.com", "profileId": "112832607337051500374"}, "id": {"customerId": "C030za3b5", "uniqueQualifier": "7854517754397537495", "applicationName": "token", "time": "2016-11-15T18:08:58.627Z"}, "kind": "admin#reports#activity", "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/gjZs_jazGgHBXPT26bBlqIEhiVY\"", "events": [{"parameters": [{"value": "292824132082.apps.googleusercontent.com", "name": "client_id"}, {"value": "Google APIs Explorer", "name": "app_name"}, {"name": "scope", "multiValue": ["https://www.googleapis.com/auth/admin.reports.audit.readonly", "https://www.googleapis.com/auth/admin.reports.usage.readonly"]}], "name": "authorize"}]}</description>
+      <description/>
       <origin>1</origin>
       <severity>25</severity>
       <type>1</type>
@@ -872,7 +872,7 @@
       <sid>0</sid>
       <class>2</class>
       <message>GSuite Logout</message>
-      <description>{"id": {"time": "2016-11-17T16:21:33.000Z", "uniqueQualifier": "-7169799351817900262", "customerId": "C030za3b5", "applicationName": "login"}, "events": [{"name": "logout", "type": "login", "parameters": [{"value": "google_password", "name": "login_type"}]}], "actor": {"profileId": "112832607337051500374", "email": "user@testdomain.com"}, "ipAddress": "70.106.204.91", "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/fdtp7SDUEV0q4m7wNQK2mmbReCE\"", "kind": "admin#reports#activity"}</description>
+      <description/>
       <origin>1</origin>
       <severity>25</severity>
       <type>1</type>
@@ -890,7 +890,7 @@
       <sid>0</sid>
       <class>2</class>
       <message>GSuite Login Successful</message>
-      <description>{"ipAddress": "70.106.204.91", "etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/0letFYl_7YuOrXLsxf7jBAyaT30\"", "events": [{"name": "login_success", "parameters": [{"value": "google_password", "name": "login_type"}], "type": "login"}], "kind": "admin#reports#activity", "actor": {"email": "user@testdomain.com", "profileId": "112832607337051500374"}, "id": {"time": "2016-11-16T17:53:30.000Z", "uniqueQualifier": "-1956143570401743299", "customerId": "C030za3b5", "applicationName": "login"}}</description>
+      <description/>
       <origin>1</origin>
       <severity>25</severity>
       <type>1</type>
@@ -908,7 +908,7 @@
       <sid>0</sid>
       <class>2</class>
       <message>GSuite Login Failed</message>
-      <description>{"etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/Qh6Qy4Vz7UBv4Bvme-BkRffeAEo\"", "kind": "admin#reports#activity", "events": [{"parameters": [{"value": "google_password", "name": "login_type"}, {"value": "login_failure_invalid_password", "name": "login_failure_type"}], "name": "login_failure", "type": "login"}], "actor": {"profileId": "112832607337051500374", "email": "user@testdomain.com"}, "id": {"uniqueQualifier": "5067047421963720536", "time": "2016-11-16T15:23:35.000Z", "applicationName": "login", "customerId": "C030za3b5"}, "ipAddress": "207.179.200.59"}</description>
+      <description/>
       <origin>1</origin>
       <severity>25</severity>
       <type>1</type>
@@ -1196,7 +1196,7 @@
       <sid>0</sid>
       <class>2</class>
       <message>GSuite Groups: ACL Permission Changed</message>
-      <description>{"etag": "\"6KGrH_UY2JDZNpgjPKUOF8yJF1A/puG2EhNP501SDAUycBc6jQGh5wE\"", "actor": {"callerType": "USER", "profileId": "112832607337051500374", "email": "user@testdomain.com"}, "events": [{"type": "acl_change", "name": "change_acl_permission", "parameters": [{"name": "group_email", "value": "test@testdomain.com"}, {"name": "acl_permission", "value": "can_view_topics"}, {"name": "old_value_repeated", "multiValue": ["organization", "members", "owners", "managers"]}, {"name": "new_value_repeated", "multiValue": ["organization", "owners", "managers"]}]}, {"type": "acl_change", "name": "change_acl_permission", "parameters": [{"name": "group_email", "value": "test@testdomain.com"}, {"name": "acl_permission", "value": "can_join"}, {"name": "old_value_repeated", "multiValue": ["organization", "members", "owners", "managers"]}, {"name": "new_value_repeated", "multiValue": ["organization"]}]}, {"type": "acl_change", "name": "change_acl_permission", "parameters": [{"name": "group_email", "value": "test@net</description>
+      <description/>
       <origin>1</origin>
       <severity>25</severity>
       <type>1</type>
