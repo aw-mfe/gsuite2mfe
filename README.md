@@ -12,11 +12,11 @@ This is intended to be called as a cron or Task Manager task. If it can find a b
 ## Installation
 One method of installation using virtualenv is:
 
-    user@lnxbx:~$ git clone https://github.com/andywalden/gsuite2mfe
-    user@lnxbx:~$ virtualenv -p /usr/bin/python3 gsuite2mfe
-    user@lnxbx:~$ cd gsuite2mfe
-    user@lnxbx:~$ source bin/activate
-    user@lnxbx:~$ pip install -r requirements.txt
+    $ git clone https://github.com/andywalden/gsuite2mfe
+    $ virtualenv -p /usr/bin/python3 gsuite2mfe
+    $ cd gsuite2mfe
+    $ source bin/activate
+    $ pip install -r requirements.txt
 
 Copy/Paste Friendly:
 
@@ -73,7 +73,7 @@ gsuite2mfe.sh needs to be edited to include the correct path to the script.
 
 Then set the script to run at an interval. To have cron query every minute, do the following:
 
-    user@lnxbx:~$ crontab -e
+    $ crontab -e
 
 At the bottom of the file, insert this line (replace the path with actual path):
 

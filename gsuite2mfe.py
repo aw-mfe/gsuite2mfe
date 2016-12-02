@@ -9,6 +9,7 @@ from oauth2client import tools
 from oauth2client.file import Storage
 from pyrfc3339 import parse
 from pyrfc3339 import generate
+from pytz import timezone
 
 import argparse
 import base64
@@ -18,15 +19,12 @@ import ipaddress
 import json
 import logging
 import logging.config
+import pickle
 import os
 import pytz
 import socket
 import sys
 import time
-
-SCOPES = 'https://www.googleapis.com/auth/admin.reports.audit.readonly'
-CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'Reports API Python Quickstart'
 
 
 """ G Suite/Google Apps Events -> McAfee ESM
@@ -54,7 +52,7 @@ any credentials.
 """
 
 __author__ = "Andy Walden"
-__version__ = "Beta1"
+__version__ = "Beta2"
 
 class Args(object):
     """
@@ -82,17 +80,17 @@ class Args(object):
                                  action='store_true',
                                  default=False,
                                  dest="testmode",
-                                 help="Disable syslog forwarding. Combine with -l debug for console output.")
+                                 help="Disable syslog forwarding. Combine with -l debug for console output")
 
         self.parser.add_argument("-w", "--write",
                                  action='store_true',
                                  default=False,
                                  dest="write_eventfile",
-                                 help="Write events to log: gsuite2mfe_events.log. Use -f to change path/filename.")
+                                 help="Write events to log: gsuite2mfe_events.log. Use -f to change path/filename")
                 
         self.parser.add_argument("-f", "--file",
                                  default=None, dest="event_filename", metavar='',
-                                 help="Specify alternate path/filename for -w option.")
+                                 help="Specify alternate path/filename for -w option")
 
         self.parser.add_argument("-v", "--version",
                                  action="version",
@@ -132,7 +130,7 @@ def logging_init():
     formatter = logging.Formatter('%(asctime)s {} %(module)s: %(message)s'.format(hostname),
                                     datefmt='%b %d %H:%M:%S')
     logger = logging.getLogger()
-    fh = logging.FileHandler(logfile, mode='w')
+    fh = logging.FileHandler(logfile, mode='a')
     fh.setFormatter(formatter)
     logger.addHandler(fh)
     ch = logging.StreamHandler()
@@ -144,8 +142,7 @@ def get_filename():
     filename = (inspect.getfile(inspect.currentframe())
                 .split("\\", -1)[-1]).rsplit(".", 1)[0]
     return filename
-
-
+        
 class Syslog(object):
     """
     Open TCP socket using supplied server IP and port.
@@ -182,65 +179,62 @@ class Syslog(object):
             logging.error("Socket error to syslog: %s", self.server)
 
 
-def get_credentials():
-    """
-    Returns valid user credentials from storage.
+class GsuiteQuery(object):
 
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-    """
-    home_dir = os.path.expanduser('~')
-    credential_dir = os.path.join(home_dir, '.credentials')
-    if not os.path.exists(credential_dir):
-        os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   'admin-reports_v1-python-quickstart.json')
+    def __init__(self, app, s_time=None, e_time=None, max="50", user='all'):
+        self.app = app
+        self.s_time = s_time
+        self.e_time = e_time
+        self.max = max
+        self.user = user
+        self.scope = 'https://www.googleapis.com/auth/admin.reports.audit.readonly'
+        self.secret_file = 'client_secret.json'
+        self.appname = 'Reports API Python Quickstart'
 
-    store = Storage(credential_path)
-    credentials = store.get()
-    if not credentials or credentials.invalid:
-        if not os.path.isfile(CLIENT_SECRET_FILE):
-            logging.error("'client_secret.json file is missing. \
-                             Google OAuth must be configured.")
-            sys.exit(1)
+    def get_credentials(self):
+        """
+        Returns user credentials from storage.
 
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-    return credentials
+        If nothing has been stored, or if the stored credentials are invalid,
+        the OAuth2 flow is completed to obtain the new credentials.
+        """
+        self.home_dir = os.path.expanduser('~')
+        self.credential_dir = os.path.join(self.home_dir, '.credentials')
+        if not os.path.exists(self.credential_dir):
+            logging.debug("Cred directory not found...creating: %s", self.credential_dir)
+            os.makedirs(self.credential_dir)
+        self.credential_path = os.path.join(self.credential_dir,
+                                       'admin-reports_v1-python-quickstart.json')
 
-    
-def validate_time(return_type, timestamp):
-    """If the timestamp is valid a RFC 3339 formatted timestamp, a string
-    or object will be returned based upon the return_type of either 's', or 'o'
-    """
-    try:
-        logging.debug("Validating timestamp: %s", timestamp)
-        time_obj = parse(timestamp)
-        if return_type == 'o':
-            return time_obj
-        else:
-            return timestamp
-    except (ValueError, TypeError):
-        logging.debug("Missing or invalid time format: %s", timestamp)
-        return None
+        self.store = Storage(self.credential_path)
+        self.credentials = self.store.get()
+        if not self.credentials or self.credentials.invalid:
+            if not os.path.isfile(self.client_file):
+                logging.error("'client_secret.json file is missing. \
+                                 Google OAuth must be configured")
+                sys.exit(1)
 
+            self.flow = client.flow_from_clientsecrets(self.client_file, self.scope)
+            self.flow.user_agent = self.appname
         
-def query_gsuite(app, s_time, e_time):
-    """ 
-    Returns GSuite events based on given app.
-    Start time and End time are optional parameters.
-    """
-    logging.debug("Authenticating to GSuite.")
-    credentials = get_credentials()
-    http = credentials.authorize(httplib2.Http())
-    service = discovery.build('admin', 'reports_v1', http=http)
-    logging.debug("Retrieving %s events from: %s to %s", app, s_time, e_time)
-    results = service.activities().list(userKey='all', 
-                                        applicationName=app, 
-                                        startTime=s_time,
-                                        endTime=e_time).execute()
-    return results.get('items', [])
-
+    def execute(self):
+        """ 
+        Returns GSuite events based on given app/activity.
+        Other parameters are optional.
+        """
+        logging.debug("Authenticating to GSuite")
+        self.get_credentials()
+        self.http = self.credentials.authorize(httplib2.Http())
+        self.service = discovery.build('admin', 'reports_v1', http=self.http)
+        logging.debug("Retrieving %s events from: %s to %s", self.app, convert_time(self.s_time), convert_time(self.e_time))
+        self.results = self.service.activities().list(userKey=self.user, 
+                                             applicationName=self.app, 
+                                             startTime=self.s_time,
+                                             endTime=self.e_time,
+                                             maxResults=self.max).execute()
+        return self.results.get('items', [])
+        
+    
 class Bookmark(object):
     """
     Functions to read, write, track update bookmark files
@@ -255,7 +249,7 @@ class Bookmark(object):
         Returns RFC 3339 timestamp string. Tries to read given file.
         If file cannot be read, current time is returned.
         """
-        logging.debug("Looking for bookmark file.")
+        logging.debug("Looking for bookmark file")
         try:
             if os.path.getsize(self.bmfile) < 10:
                 logging.error("Bookmark file appears corrupt: %s", self.bmfile)
@@ -272,13 +266,13 @@ class Bookmark(object):
                 logging.debug("Opening: %s", self.bmfile)
                 self.bookmark = self.open_bmfile.read()
                 logging.debug("File found. Reading timestamp: %s", 
-                                self.bookmark)
+                                convert_time(self.bookmark))
                 if validate_time('s', self.bookmark):
-                    logging.debug("Bookmark time is valid.")
+                    logging.debug("Bookmark time is valid")
                     self.s_time = self.bookmark
                     return self.s_time
                 else:
-                    logging.error("Invalid bookmark data. Using current time.")
+                    logging.error("Invalid bookmark data. Using current time")
                     self._generate_bm_time()
                     return self.s_time
         except OSError:
@@ -287,19 +281,19 @@ class Bookmark(object):
             return self.s_time
 
     def _generate_bm_time(self):
-        self.s_time = str(generate(datetime.now(pytz.utc) - timedelta(0,1)))
+        self.s_time = str(generate(datetime.now(pytz.utc) - timedelta(0,1800)))
         self.new_bookmark = validate_time('o', self.s_time)
         logging.debug("Bookmark time generated: %s", self.s_time)
         
     def update(self, events):
         """ 
-        Returns latest timestamp as RFC3339 timestamp.
+        Stores latest timestamp as bookmark time.
         
-        Parameters: s_time: RFC3339 timestamp string
-                    events: list of event dicts from Gsuite
+        Validates RFC3339 timestamps for given list of events (record per line as dict). 
+        
         """
         self.events = events
-        for self.event in self.events:
+        for self.event in self.events:            
             self.evt_time_obj = validate_time('o', self.event['id']['time'])
             if self.evt_time_obj:
                 if self.evt_time_obj > validate_time('o', self.bookmark):
@@ -326,10 +320,118 @@ class Bookmark(object):
                     self.open_bmfile.flush()
                     logging.debug("Updated bookmark file: %s", self.new_bookmark_str)
             except OSError:
-                    logging.error("Bookmark file could not be written.")
+                    logging.error("Bookmark file could not be written")
         except AttributeError:
-            logging.debug("No new timestamps. Bookmark remains unchanged.")
+            logging.debug("No new timestamps. Bookmark remains unchanged")
 
+class Cache(object):
+    """
+    Functions to create, read, write the event-id cache file
+    """
+    def __init__(self, activity):
+        logging.debug("Building cache for: %s", activity)
+        self.activity = activity
+        self.cachefile = "." + activity + '.cache'
+        self.cache_enabled = True
+        self.cache = {}
+        self._init_cache
+
+    def _init_cache(self):
+        """ 
+        Try to open existing cache file, if no file, call _build_cache
+        """
+        logging.debug("Looking for cache file: %s", self.cachefile)
+        if os.path.exists(self.cachefile) and os.path.getsize(self.cachefile) > 0:
+            with open(self.cachefile, "rb") as self.open_cache:
+                self.cache = pickle.load(self.open_cache)
+                logging.debug("Cache: %s", (self.cache))
+        else:
+            logging.debug("Cache file not found. Creating from scratch")
+            self._build_cache()
+        
+    def _build_cache(self):
+        """ 
+        Query G Suite to build event_id cache for given activity
+        """
+        self.gsuite = GsuiteQuery(self.activity, max="50")
+        self.events = self.gsuite.execute()
+        if len(self.events) > 0:
+            for self.cnt, self.event in enumerate(self.events, 1):
+                self.cache.update({self.event['id']['uniqueQualifier']:self.event['id']['time']})
+            logging.debug("Cache built: New event IDs added: %s", self.cnt)
+        else:
+            self.cache_enabled = False
+            logging.debug("No events found for cache. Caching disabled")
+    
+    def dedup_events(self, new_events):
+        """
+        Returns list with any cached events removed.
+        
+        Compares given list of events (record per line as a dict) with the cache 
+        to look for duplicate events. 
+        """
+        logging.debug("Call to deduplicate events. Processing: %s", len(new_events))
+        if self.cache_enabled:
+            self.new_events = new_events
+            self.deduped_events = []
+            
+            for self.new_event in self.new_events:
+                self.new_event_id = self.new_event['id']['uniqueQualifier']
+                self.new_event_time = self.new_event['id']['time']
+                
+                if self.new_event_id not in self.cache:
+                    self.deduped_events.append(self.new_event)
+                    self.cache.update({self.new_event_id : self.new_event_time})
+                else:
+                    logging.debug("Duplicate event found in cache: %s", self.new_event)
+            return(self.deduped_events)
+        else:
+            logging.error("Caching disabled. No skipping dedup for %s", self.activity)
+        
+    def write(self):
+        """
+        Write cache to file
+        """
+        try:
+            with open(self.cachefile, 'wb') as self.open_cache:
+                pickle.dump(self.cache, self.open_cache)
+                logging.debug("Cache file entries written: filename:cnt: %s:%s", 
+                                self.cachefile, len(self.cachefile))
+        except OSError:
+            logging.error("Cache file could not be written: %s", self.cachefile)
+        else:
+            logging.error("Caching disabled. Touching file: %s", self.cachefile)
+            touch(self.cachefile)
+
+def validate_time(return_type, timestamp):
+    """If the timestamp is valid a RFC 3339 formatted timestamp, a string
+    or object will be returned based upon the return_type of either 's', or 'o'
+    """
+    try:
+        logging.debug("Validating timestamp: %s", convert_time(timestamp))
+        time_obj = parse(timestamp)
+        if return_type == 'o':
+            return time_obj
+        else:
+            return timestamp
+    except (ValueError, TypeError):
+        if timestamp is None:
+            logging.debug("Null time provided: %s", timestamp)
+        else:
+            logging.error("Invalid time format: %s", timestamp)
+        return None
+                    
+def convert_time(timestamp):    
+    return str(parse(timestamp).astimezone(pytz.timezone("US/Eastern")))
+
+            
+def touch(touchfile, times=None):
+    """
+    touch - change file timestamps
+    """
+    with open(touchfile, 'a'):
+        os.utime(touchfile, times)            
+            
 def send_to_syslog(events, syslog):
     """ 
     Sends iterable event object to syslog socket.
@@ -354,8 +456,9 @@ def write_events_to_file(events, event_filename):
     except OSError:
         logging.error("Event file file could not be written: %s.", event_filename)
     except AttributeError:
-        logging.debug("No new events. Event file unchanged.")
+        logging.debug("No new events. Event file unchanged")
 
+        
 
 def main():
     """ Main function """
@@ -363,17 +466,16 @@ def main():
     args = Args(sys.argv)
     pargs = args.get_args()
     logging_init()
-
     if pargs.level: 
         logging.getLogger().setLevel(getattr(logging, pargs.level.upper()))
-    
+    logging.debug("******************DEBUG ENABLED******************")
     testmode = pargs.testmode
     configfile = pargs.cfgfile if pargs.cfgfile else 'config.ini'
 
     try:
         event_filename = pargs.event_filename if pargs.event_filename else "gsuite2mfe_events.json"
     except NameError: 
-        logging.debug("No event file specified.")
+        logging.debug("No event file specified")
     
     write_eventfile = True if pargs.write_eventfile else False
         
@@ -385,7 +487,7 @@ def main():
         except NoOptionError:
             logging.debug("'syslog_host' or 'syslog_port' setting \
                             not detected in: %s.", configfile)
-            logging.debug("Enabling testmode.")
+            logging.debug("Enabling testmode")
             testmode = True
         try:
             activities = c.activities.split(',')
@@ -401,49 +503,55 @@ def main():
         activities = ['login']
 
     using_bookmark = True
+
     s_time = pargs.s_time if validate_time('s', pargs.s_time) else None
-    e_time = pargs.e_time if validate_time('s', pargs.e_time) else None
-    if s_time or e_time:
+    e_time = pargs.e_time if validate_time('s', pargs.e_time) else str(generate(datetime.now(pytz.utc)))
+    if s_time:
         using_bookmark = False
-        
+         
     if not testmode:
         syslog = Syslog(syslog_host, syslog_port)
     
     for activity in activities:
+        logging.debug("*****************")
+        logging.debug("Processing actvity: '%s'", activity)
+        logging.debug("*****************")
         if using_bookmark:
             bookmark = Bookmark(activity)
             s_time = bookmark.read()
+            cache = Cache(activity)
             
-        if not e_time:
-            e_time = str(generate(datetime.now(pytz.utc)))
-            logging.debug("End_time set to now: %s", e_time)
-    
-        events = query_gsuite(activity, s_time, e_time)
-
+        
+        gsuite = GsuiteQuery(activity, s_time=s_time, e_time=e_time)
+        events = gsuite.execute()
+   
+        if len(events) > 0 and using_bookmark:
+            events = cache.dedup_events(events)
+        
         if len(events) > 0:
             if using_bookmark:
-                logging.debug("Validating event times.")
+                logging.debug("Validating event times")
                 bookmark.update(events)
             if not testmode:
                 send_to_syslog(events, syslog)
             if write_eventfile:
                 write_events_to_file(events, event_filename)
             else:
-                logging.debug(" Total events retrieved from %s: %s", 
+                logging.debug("Total events retrieved from %s: %s", 
                                 activity, len(events))
         else:
-            logging.debug("No events found for activity: %s.", activity)
+            logging.debug("No events found for activity: %s", activity)
         
         if using_bookmark:
             bookmark.write()
+            cache.write()
         else:
-            logging.debug("Bookmark unchanged.")    
-
-
+            logging.debug("Bookmark unchanged")
             
 if __name__ == "__main__":
     try:
         main()
+        logging.debug("******************EXECUTE COMPLETE******************")
     except KeyboardInterrupt:
-        logging.warning("Control-C Pressed, stopping...")
+        logging.warning("Control-C Pressed, stopping..")
         sys.exit()
