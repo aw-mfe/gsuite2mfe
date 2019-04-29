@@ -32,7 +32,7 @@ Edit the config.ini to set the IP address the events will be forwarded and enabl
 
 The activities line is a comma delimited (no spaces) list of event types, or 'activities' to query for. Currently GSuite supports: 
 
-admin,calendar,drive,groups,login,mobile,token
+admin,calendar,drive,login,mobile,token,groups,saml,chat,gplus,rules,jamboard,meet,user_accounts,access_transparency,groups_enterprise
 
 Per: https://developers.google.com/admin-sdk/reports/v1/reference/activities/list
 
@@ -40,7 +40,17 @@ Remove an activity from the list to disable event collection for that activity.
 
 ## Enable GSuite Authentication
 
-Before the script can be used, install the API credentials. [Google has a Python quick start process to get things set up](https://developers.google.com/admin-sdk/reports/v1/quickstart/python). The steps below are a bit more manual but are tested and known working.
+Before the script can be used, install the API credentials. [Google has a Python quick start process to get things set up](https://developers.google.com/admin-sdk/reports/v1/quickstart/python). 
+
+In summary, as they are listed on the Quick Start page:
+ 1. Step 1 - click the button to enable the Reports API.
+ 2. You will be prompted to log in to your GSuite account if you are not already.
+ 3. A pop-up will appear with the Client ID and Client Secret. Click the button at the top to download the Client Configuration. Leave the file named credentials.json and save it to the same directory as the gsuite2mfe script.
+ 4. Run the script. If you're on a desktop, your browser should open to prompt for authorization. If you're at a console, an authorization URL will be generated for copy/pasting into a browser. 
+ 5. Once the script is authorized the token will be saved in the accounts home directory in a subdirectory called .credentials which should be protected. 
+
+
+As an alternative to the Quick Start, the steps below are a bit more manual but are tested and known working.
 
 1. Go to the [Google API Manager](https://console.developers.google.com/iam-admin/projects).
 2. Create a new project called 'gsuite2mfe'. It might take a few minutes but then will refresh to the API Library.
