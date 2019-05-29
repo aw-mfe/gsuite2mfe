@@ -50,25 +50,6 @@ In summary, as they are listed on the Quick Start page:
  5. Once the script is authorized the token will be saved in the accounts home directory in a subdirectory called .credentials which should be protected. 
 
 
-As an alternative to the Quick Start, the steps below are a bit more manual but are tested and known working.
-
-1. Go to the [Google API Manager](https://console.developers.google.com/iam-admin/projects).
-2. Create a new project called 'gsuite2mfe'. It might take a few minutes but then will refresh to the API Library.
-3. Enter 'Admin SDK' into the search box and select the link.
-4. Click the Enable button at the top of the screen.
-5. Click Credentials on the left menu bar.
-6. Click Create Credentials then OAuth client ID.
-4. Click the Configure consent screen button.
-5. Enter 'gsuite2mfe' as the Product name shown to users. Click Save.
-6. Select Other as the Application type and enter 'gsuite2mfe' as the Name. Click Create.
-7. You will be shown the client ID and client secret. Click OK.
-8. The credentials will be listed under OAuth 2.0 client IDs. Click the Download button at the far right to download the json file. Save it as client_secret.json and put it into the script directory.
-9. Run the command: python quickstart.py --noauth_local_webserver
-10. Paste the link into your browser, click Allow and copy the supplied code.
-11. Paste the code back into the terminal with the script.
-12. The script will return the last 10 logins to show that it is working.
-
-
 ## Setting Up Interval Polling
 
 Since the script is running in a virtual environment, it's helpful to have a shell script to set things up. 
@@ -79,7 +60,6 @@ gsuite2mfe.sh needs to be edited to include the correct path to the script.
     cd /home/user/gsuite2mfe  <--
     source bin/activate
     python gsuite2mfe.py
-
 
 Then set the script to run at an interval. To have cron query every minute, do the following:
 
