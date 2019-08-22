@@ -1,5 +1,6 @@
 import argparse
 import base64
+import dateparser
 import httplib2
 import inspect
 import ipaddress
@@ -48,7 +49,7 @@ any credentials.
 """
 
 __author__ = 'Andy Walden'
-__version__ = '1.0.1'
+__version__ = '1.0.1a'
 
 class Args(object):
     """
@@ -149,7 +150,7 @@ class Syslog(object):
     def __init__(self,
                 server,
                 port=514):
-        logging.debug('Function: open_socket: %s: %s', server, port)
+        logging.debug('Initializing syslog server: %s:%s', server, port)
         port = int(port)
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -157,8 +158,10 @@ class Syslog(object):
             self.sock.connect((server, port))
         except socket.timeout:
             logging.error('Connection timeout to syslog: %s', server)
+            raise
         except socket.error:
-            logging.error('Socket error to syslog: %s', server)
+            logging.error('Cannot connect to syslog server: %s', server)
+            raise
 
     def send(self, data):
         """
@@ -195,6 +198,7 @@ class GsuiteQuery(object):
         self.secret_file = 'client_secret.json'
         self.appname = 'Reports API Python Quickstart'
         self.token_file = '.token.pickle'
+        self.cred_file = 'credentials.json'
 
     def get_credentials(self):
         """
@@ -218,8 +222,14 @@ class GsuiteQuery(object):
             if self.creds and self.creds.expired and self.creds.refresh_token:
                 self.creds.refresh(Request())
             else:
-                flow = InstalledAppFlow.from_client_secrets_file('credentials.json', self.scope)
-                self.creds = flow.run_console()
+                try:
+                    flow = InstalledAppFlow.from_client_secrets_file(self.cred_file, self.scope)
+                    self.creds = flow.run_console()
+                except FileNotFoundError:
+                    print('Google Auth Error: Is the "credentials.json" file in the script directory?\n'
+                           'Use the Google Quickstart to generate and download the file at:\n'
+                           'https://developers.google.com/admin-sdk/reports/v1/quickstart/python')
+                    sys.exit()
 
             with open(pickle_path, 'wb') as token:
                 pickle.dump(self.creds, token)
@@ -233,7 +243,7 @@ class GsuiteQuery(object):
         logging.debug('Authenticating to GSuite')
         self.get_credentials()
         service = build('admin', 'reports_v1', credentials=self.creds)
-        logging.debug('Retrieving %s events from: %s to %s', self.app, convert_time(self.s_time), convert_time(self.e_time))
+        logging.debug('Retrieving %s events from: %s to %s', self.app, self.s_time, self.e_time)
         results = service.activities().list(userKey=self.user,
                                              applicationName=self.app,
                                              startTime=self.s_time,
@@ -248,50 +258,43 @@ class Bookmark(object):
     """
     def __init__(self, activity):
         logging.debug('Init bookmark object: %s.', activity)
-        self.bmfile = '.' + activity + '.bookmark'
-        self.activity = activity
         self.bookmark = None
+        bm_file = '.' + activity + '.bookmark'
+        self.bookmark = self._read(bm_file)
+        if validate_time(self.bookmark):
+            self.bmtime = datetime.utcnow() - timedelta(seconds=1800)
+        if not self.bookmark:
+            self.bmtime = datetime.utcnow() - timedelta(seconds=1800)
+            self.bookmark = self.bmtime.strftime('%Y-%m-%dT%H:%M:%SZ')
 
-    def read(self):
+    def __repr__(self):
+        return str(self.bookmark)
+
+    def _read(self, filename):
         """
-        Returns RFC 3339 timestamp string. Tries to read given file.
-        If file cannot be read, current time is returned.
+        Returns RFC 3339 timestamp string from activity bookmark file.
         """
-        logging.debug('Looking for bookmark file')
+        logging.debug('Looking for bookmark file.')
         try:
-            if os.path.getsize(self.bmfile) < 10:
-                logging.error('Bookmark file appears corrupt: %s', self.bmfile)
-                self._generate_bm_time()
-                return self.s_time
-
+            if os.path.getsize(filename) < 10:
+                logging.error('Bookmark file appears corrupt: %s', filename)
+                return
         except FileNotFoundError:
-            logging.debug('Bookmark file not found: %s.', self.bmfile)
-            self._generate_bm_time()
-            return self.s_time
-
+            logging.debug('Bookmark file not found: %s.', filename)
+            return
         try:
-            with open(self.bmfile, 'r') as self.open_bmfile:
-                logging.debug('Opening: %s', self.bmfile)
-                self.bookmark = self.open_bmfile.read()
-                logging.debug('File found. Reading timestamp: %s',
-                                convert_time(self.bookmark))
-                if validate_time('s', self.bookmark):
-                    logging.debug('Bookmark time is valid')
-                    self.s_time = self.bookmark
-                    return self.s_time
+            with open(filename, 'r') as open_bmfile:
+                bookmark = open_bmfile.read()
+                logging.debug('File found. Validating timestamp: %s', bookmark)
+                if validate_time(bookmark):
+                    logging.debug('Bookmark time is valid.')
+                    return bookmark
                 else:
-                    logging.error('Invalid bookmark data. Using current time')
-                    self._generate_bm_time()
-                    return self.s_time
+                    logging.error('Invalid bookmark: %s', bookmark)
+                    return
         except OSError:
-            logging.debug('Bookmark file cannot be accessed: %s.', self.bmfile)
-            self._generate_bm_time()
-            return self.s_time
-
-    def _generate_bm_time(self):
-        self.s_time = str(generate(datetime.now(pytz.utc) - timedelta(0,1800)))
-        self.bookmark = self.new_bookmark = validate_time('o', self.s_time)
-        logging.debug('Bookmark time generated: %s', self.s_time)
+            logging.debug('Bookmark file cannot be accessed: %s.', filename)
+            return
 
     def update(self, events):
         """
@@ -301,9 +304,9 @@ class Bookmark(object):
 
         """
         for event in events:
-            evt_time_obj = validate_time('o', event['id']['time'])
+            evt_time_obj = validate_time(event['id']['time'], 'o')
             if evt_time_obj:
-                if evt_time_obj > validate_time('o', self.bookmark):
+                if evt_time_obj > validate_time(self.bookmark, 'o'):
                     self.new_bookmark = evt_time_obj
                     logging.debug('Event time > Bookmark time: %s', event['id']['time'])
                 else:
@@ -370,29 +373,28 @@ class Cache(object):
             self.cache_enabled = False
             logging.debug('No events found for cache. Caching disabled')
 
-    def dedup_events(self, new_events):
+    def dedup_events(self, events):
         """
-        Returns list with any cached events removed.
+        Returns time sorted list with any cached events removed.
 
         Compares given list of events (record per line as a dict) with the cache
         to look for duplicate events.
         """
         logging.debug('Deduplicating events. Processing: %s events.', len(new_events))
-        if self.cache_enabled:
-            deduped_events = []
+        if not self.cache_enabled:
+            logging.error('Caching disabled. No dedup required for %s', self.activity)
+            return
 
-            for new_event in new_events:
-                new_event_id = new_event['id']['uniqueQualifier']
-                new_event_time = new_event['id']['time']
+        deduped_events = []
+        for event in events:
+            if event['id']['uniqueQualifier'] not in self.cache:
+                deduped_events.append(event)
+                self.cache.update({event['id']['uniqueQualifier']: event['id']['time']})
+            else:
+                logging.debug('Duplicate event found in cache:\n %s', event)
 
-                if new_event_id not in self.cache:
-                    deduped_events.append(new_event)
-                    self.cache.update({new_event_id : new_event_time})
-                else:
-                    logging.debug('Duplicate event found in cache: %s', new_event)
-            return(deduped_events)
-        else:
-            logging.error('Caching disabled. No skipping dedup for %s', self.activity)
+        return sorted(deduped_events, key=lambda k: k['id']['time'])
+
 
     def write(self):
         """
@@ -409,27 +411,36 @@ class Cache(object):
             logging.info('Caching disabled. Touching file: %s', self.cachefile)
             touch(self.cachefile)
 
-def validate_time(return_type, timestamp):
-    """If the timestamp is valid a RFC 3339 formatted timestamp, a string
-    or object will be returned based upon the return_type of either 's', or 'o'
+def validate_time(timestamp, format=True):
     """
+    Args:
+        timestamp (str): Timestamp in some format.
+        format (bool): Apply RFC3339 formatting. Example: 2019-08-22T08:49:58Z
+
+    Returns:
+        If valid, unmodified timestamp, if is return_type is None.
+        None: if timestamp is not valid.
+        Time object: if return_type == 'o'.
+        Time string: if return_type == 's'.
+    """
+    if not timestamp:
+        return
+
+    time_obj = None
+    logging.debug('Validating timestamp: %s', timestamp)
     try:
-        logging.debug('Validating timestamp: %s', convert_time(timestamp))
-        time_obj = parse(timestamp)
-        if return_type == 'o':
-            return time_obj
-        else:
-            return timestamp
-    except (ValueError, TypeError):
-        if timestamp is None:
-            logging.debug('Could not convert timestamp. Null time returned.')
-        else:
-            logging.error('Invalid time format: %s.  Null time returned.', timestamp)
-        return None
+        time_obj = dateparser.parse(timestamp)
+    except TypeError:
+        logging.error('Could not parse timestamp %', timestamp)
+        return
+    if time_obj is None:
+        logging.error('Could not parse timestamp %', timestamp)
+        return
 
-def convert_time(timestamp):
-    return str(parse(timestamp).astimezone(pytz.timezone('US/Eastern')))
-
+    if format:
+        return time_obj.strftime('%Y-%m-%dT%H:%M:%SZ')
+    else:
+        return timestamp
 
 def touch(touchfile, times=None):
     """
@@ -481,42 +492,62 @@ def main():
     try:
         event_filename = pargs.event_filename if pargs.event_filename else 'gsuite2mfe_events.json'
     except NameError:
-        logging.debug('No event file specified')
+        logging.debug('No event file specified.')
 
     write_eventfile = True if pargs.write_eventfile else False
 
     try:
         c = Config(configfile, 'DEFAULT')
+        syslog_enabled = True
         try:
             syslog_host = c.sysloghost
+        except NoOptionError:
+            logging.error('syslog_host setting \
+                            not detected in: %s.', configfile)
+            logging.error('Syslog forwarding is disabled.')
+            syslog_enabled = False
+
+        try:
             syslog_port = c.syslogport
         except NoOptionError:
-            logging.debug("'syslog_host' or 'syslog_port' setting \
-                            not detected in: %s.'", configfile)
-            logging.debug('Enabling testmode')
-            testmode = True
+            logging.error('syslog_port setting \
+                            not detected in: %s.', configfile)
+            logging.error('Syslog forwarding is disabled.')
+            syslog_enabled = False
+
+        try:
+            int(syslog_port)
+        except ValueError:
+            logging.error('Invalid syslog_port: %s', syslog_port)
+            logging.error('Syslog forwarding is disabled.')
+            syslog_enabled = False
+
         try:
             activities = c.activities.split(',')
             logging.debug('Log retrieval enabled for: %s', activities)
         except AttributeError:
             activities = ['login']
-            logging.error("'activities' setting not found in %s. \
-                            Using 'login' as default.", configfile)
+            logging.error('activities setting not found in %s. \
+                            Using "login" as default.', configfile)
     except ValueError:
         logging.error('Config file not found: %s. Entering test mode.', configfile)
-        testmode = True
-        # Enabling login events for barebones testmode
+        syslog_enabled = False
+        # Only enabling login events for barebones testmode
         activities = ['login']
 
     using_bookmark = True
 
-    s_time = pargs.s_time if validate_time('s', pargs.s_time) else None
-    e_time = pargs.e_time if validate_time('s', pargs.e_time) else str(generate(datetime.now(pytz.utc)))
+    s_time = validate_time(pargs.s_time)
     if s_time:
         using_bookmark = False
+    e_time = pargs.e_time if validate_time(pargs.e_time) else datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 
-    if not testmode:
-        syslog = Syslog(syslog_host, syslog_port)
+    if syslog_enabled:
+        try:
+            syslog = Syslog(syslog_host, syslog_port)
+        except (ValueError, socket.gaierror):
+            logging.error('Syslog forwarding disabled.')
+            syslog_enabled = False
 
     for activity in activities:
         logging.debug('*****************')
@@ -524,35 +555,31 @@ def main():
         logging.debug('*****************')
         if using_bookmark:
             bookmark = Bookmark(activity)
-            s_time = bookmark.read()
+            s_time = str(bookmark)
             cache = Cache(activity)
-
 
         gsuite = GsuiteQuery(activity, s_time=s_time, e_time=e_time)
         events = gsuite.execute()
 
-        if len(events) > 0 and using_bookmark:
-            events = cache.dedup_events(events)
-
-        if len(events) > 0:
-            if using_bookmark:
-                logging.debug('Validating event times')
-                bookmark.update(events)
-            if not testmode:
-                send_to_syslog(events, syslog)
-            if write_eventfile:
-                write_events_to_file(events, event_filename)
-            else:
-                logging.debug('Total events retrieved from %s: %s',
-                                activity, len(events))
-        else:
+        if not events:
             logging.debug('No events found for activity: %s', activity)
+            continue
 
         if using_bookmark:
+            logging.debug('Deduplicating Events.')
+            events = cache.dedup_events(events)
+            bookmark.update(events)
+            logging.debug('Writing bookmark.')
             bookmark.write()
             cache.write()
-        else:
-            logging.debug('Bookmark unchanged')
+
+        if syslog_enabled:
+            send_to_syslog(events, syslog)
+
+        if write_eventfile:
+            write_events_to_file(events, event_filename)
+
+        logging.debug('Total events retrieved for %s: %s', activity, len(events))
 
 if __name__ == '__main__':
     try:
